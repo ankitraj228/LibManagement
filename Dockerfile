@@ -1,5 +1,5 @@
 # Use an official Java runtime as a parent image
-FROM eclipse-temurin:17-jdk AS build
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
 # Set working directory inside the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Build the Java application using Maven
-RUN ./mvnw clean package  # If you are not using the Maven Wrapper, use 'mvn clean package'
+RUN mvn clean package -DskipTests
 
 # Expose the port your application runs on
 EXPOSE 8080
